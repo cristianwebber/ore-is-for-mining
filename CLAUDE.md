@@ -23,6 +23,6 @@ Factorio 2.1 mod (Space Age optional): only mining drills, belts, underground be
 ## Releasing
 - Published on the mod portal: https://mods.factorio.com/mod/ore-is-for-mining (0.1.0 released 2026-09-27). The mod ID `ore-is-for-mining` can't change now, and every change the players get needs a new version.
 - `python3 tools/release.py` validates (info.json, changelog, tests) and builds `dist/<name>_<version>.zip`. It never uploads without `--publish`.
-- `--publish` needs `FACTORIO_API_KEY` in the environment. It publishes a new mod or uploads a release, then syncs the portal page. Never publish unless the user explicitly asks.
+- `--publish` reads the API key from `FACTORIO_API_KEY` or `~/.config/factorio/api_key` (mode 600, outside the repo; never print it or commit it). It publishes a new mod or uploads a release, then syncs the portal page. Never publish unless the user explicitly asks.
 - The sync overwrites the portal's title, summary (`description` in `info.json`), description (`README.md`), category, tags, license, homepage and source link (both from `homepage`) with the repo's values (`CATEGORY`, `TAGS`, `LICENSE` in `release.py`). Make portal changes in the repo, or they are lost on the next release.
 - For a new release: bump `version` in `info.json` and add a matching entry at the top of `changelog.txt`. After publishing, tag the released commit `v<version>` and push the tag.

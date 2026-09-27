@@ -5,7 +5,8 @@ usage:
   python3 tools/release.py                 # validate + build dist/<name>_<version>.zip
   python3 tools/release.py --publish       # ...and upload it
 
-Publishing needs an API key from https://factorio.com/profile in FACTORIO_API_KEY with the
+Publishing needs an API key from https://factorio.com/profile, in FACTORIO_API_KEY or in the
+file ~/.config/factorio/api_key (kept outside the repo, mode 600), with the
 scopes "ModPortal: Upload Mods", "ModPortal: Publish Mods" (first release only) and
 "ModPortal: Edit Mods" (to sync the description from README.md).
 """
@@ -23,6 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PORTAL = "https://mods.factorio.com"
+API_KEY_FILE = Path.home() / ".config" / "factorio" / "api_key"
 
 # Portal metadata. Category/tags/license values are the API's enum names.
 CATEGORY = "tweaks"
@@ -143,8 +145,11 @@ def check_ok(result, step):
 
 def publish(info, zip_path):
     api_key = os.environ.get("FACTORIO_API_KEY")
+    if not api_key and API_KEY_FILE.is_file():
+        api_key = API_KEY_FILE.read_text().strip()
     if not api_key:
-        die("set FACTORIO_API_KEY (create one at https://factorio.com/profile)")
+        die(f"set FACTORIO_API_KEY or save the key in {API_KEY_FILE} "
+            "(create one at https://factorio.com/profile)")
     name = info["name"]
     description = (ROOT / "README.md").read_text()
     releases = portal_releases(name)
