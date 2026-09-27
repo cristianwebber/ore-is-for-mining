@@ -56,4 +56,5 @@ end
 
 The code is under the MIT license. The thumbnail is made from Factorio's own graphics, which belong to Wube Software.
 
-Source: https://github.com/cristianwebber/ore-is-for-mining
+- Mod portal: https://mods.factorio.com/mod/ore-is-for-mining
+- Source: https://github.com/cristianwebber/ore-is-for-mining
