@@ -40,13 +40,13 @@ The restriction uses the game's own collision system. Placing a blocked building
 
 ## For mod authors
 
-Add `"? ore-patch-restrictions"` as an optional dependency and adjust the rules during the data stage (`data.lua` or `data-updates.lua`):
+Add `"? ore-is-for-mining"` as an optional dependency and adjust the rules during the data stage (`data.lua` or `data-updates.lua`):
 
 ```lua
-if ore_patch_restrictions then
-  ore_patch_restrictions.allowed_types["my-type"] = true        -- allow a whole entity type
-  ore_patch_restrictions.allowed_entities["my-entity"] = true   -- allow a single entity
-  ore_patch_restrictions.blocked_entities["my-entity"] = true   -- force-block an entity
-  ore_patch_restrictions.ignored_resources["my-ore"] = true     -- leave a resource unrestricted
+if ore_is_for_mining then
+  ore_is_for_mining.allowed_types["my-type"] = true        -- allow a whole entity type
+  ore_is_for_mining.allowed_entities["my-entity"] = true   -- allow a single entity
+  ore_is_for_mining.blocked_entities["my-entity"] = true   -- force-block an entity
+  ore_is_for_mining.ignored_resources["my-ore"] = true     -- leave a resource unrestricted
 end
 ```

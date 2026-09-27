@@ -4,5 +4,5 @@
   "title": "Ore is for Mining API test",
   "author": "tests",
   "factorio_version": "2.0",
-  "dependencies": ["ore-patch-restrictions"]
+  "dependencies": ["ore-is-for-mining"]
 }

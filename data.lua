@@ -7,16 +7,16 @@ data:extend({
   },
 })
 
--- Public interface for other mods. Add a dependency on "ore-patch-restrictions"
--- (optional "? ore-patch-restrictions" is fine) and, in data or data-updates:
+-- Public interface for other mods. Add a dependency on "ore-is-for-mining"
+-- (optional "? ore-is-for-mining" is fine) and, in data or data-updates:
 --
---   if ore_patch_restrictions then
---     ore_patch_restrictions.allowed_types["my-type"] = true       -- allow a whole entity type
---     ore_patch_restrictions.allowed_entities["my-entity"] = true  -- allow a single entity
---     ore_patch_restrictions.blocked_entities["my-entity"] = true  -- force-block an entity
---     ore_patch_restrictions.ignored_resources["my-ore"] = true    -- leave a resource unrestricted
+--   if ore_is_for_mining then
+--     ore_is_for_mining.allowed_types["my-type"] = true       -- allow a whole entity type
+--     ore_is_for_mining.allowed_entities["my-entity"] = true  -- allow a single entity
+--     ore_is_for_mining.blocked_entities["my-entity"] = true  -- force-block an entity
+--     ore_is_for_mining.ignored_resources["my-ore"] = true    -- leave a resource unrestricted
 --   end
-ore_patch_restrictions = {
+ore_is_for_mining = {
   allowed_types = {},
   allowed_entities = {},
   blocked_entities = {},

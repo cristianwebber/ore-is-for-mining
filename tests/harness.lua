@@ -57,8 +57,8 @@ function harness.load(opts)
       end
     end
   end
-  mod_paths["ore-patch-restrictions"] = opts.mod_dir
-  table.insert(order, "ore-patch-restrictions")
+  mod_paths["ore-is-for-mining"] = opts.mod_dir
+  table.insert(order, "ore-is-for-mining")
   for _, extra in ipairs(opts.extra_mods or {}) do
     mod_paths[extra.name] = extra.dir
     table.insert(order, extra.name)

@@ -12,4 +12,4 @@ Date: 2026-09-26
     - Also apply to oil and other fluid resources (on by default): when off, only solid ores are restricted.
     - Extra allowed entities: comma-separated list of entity names that may also be built on resource patches.
   Modding:
-    - Other mods can allow entity types or single entities, force-block entities, or exclude resources through the global ore_patch_restrictions table during the data stage.
+    - Other mods can allow entity types or single entities, force-block entities, or exclude resources through the global ore_is_for_mining table during the data stage.

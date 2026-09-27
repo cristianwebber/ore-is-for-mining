@@ -62,7 +62,7 @@ local ignored_types = {
   ["item-request-proxy"] = true,
 }
 
-local api = ore_patch_restrictions
+local api = ore_is_for_mining
 for type in pairs(api.allowed_types) do
   allowed_types[type] = true
 end

@@ -3,7 +3,7 @@
 Factorio 2.1 mod (Space Age optional): only mining drills, belts, underground belts, splitters, loaders, inserters, beacons, power poles and pipes can be built on resource patches (ores and fluids like crude oil).
 
 ## How it works
-- `data.lua` defines the `opr_resource` collision layer and the public `ore_patch_restrictions` table other mods use to allow/block entities.
+- `data.lua` defines the `opr_resource` collision layer and the public `ore_is_for_mining` table other mods use to allow/block entities.
 - `data-final-fixes.lua` adds that layer to resources and to every `player-creation` entity whose type isn't allowed, so the engine blocks placement (ghosts and blueprints included). Vehicles, trains, elevated rails and ghosts are never touched.
 - Rules are type-based so modded entities are covered automatically.
 - Startup settings in `settings.lua`, text in `locale/en/locale.cfg` (setting names are `opr-*`).
