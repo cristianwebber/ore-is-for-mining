@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-09-26
+  Features:
+    - Only mining drills (including pumpjacks), belts, underground belts, splitters, loaders, inserters, beacons, electric poles, pipes and pipes-to-ground can be built on resource patches.
+    - Applies to ore and fluid patches (crude oil and Space Age fluids), from the base game, Space Age and other mods.
+    - Placement is blocked by the game itself, so the red build preview, ghosts, blueprints and construction robots all follow the rules.
+    - Vehicles, trains and elevated rails are never restricted.
+  Settings:
+    - Allow rails on resource patches (off by default): rails, rail ramps, rail supports, signals and train stops.
+    - Allow splitters on resource patches (on by default).
+    - Also apply to oil and other fluid resources (on by default): when off, only solid ores are restricted.
+    - Extra allowed entities: comma-separated list of entity names that may also be built on resource patches.
+  Modding:
+    - Other mods can allow entity types or single entities, force-block entities, or exclude resources through the global ore_patch_restrictions table during the data stage.

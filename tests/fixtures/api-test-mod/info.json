@@ -1,0 +1,8 @@
+{
+  "name": "opr-api-test-mod",
+  "version": "0.0.1",
+  "title": "Ore is for Mining API test",
+  "author": "tests",
+  "factorio_version": "2.0",
+  "dependencies": ["ore-patch-restrictions"]
+}
