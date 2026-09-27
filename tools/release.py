@@ -26,7 +26,7 @@ PORTAL = "https://mods.factorio.com"
 
 # Portal metadata. Category/tags/license values are the API's enum names.
 CATEGORY = "tweaks"
-TAGS = ["mining"]
+TAGS = ["mining", "environment"]
 LICENSE = "default_mit"
 
 # Everything that goes into the zip; tests/, tools/, dist/ and docs stay out.
