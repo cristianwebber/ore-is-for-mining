@@ -169,6 +169,8 @@ def publish(info, zip_path):
     print("Syncing title, summary, description and tags...")
     fields = [("mod", name), ("title", info["title"]), ("summary", info.get("description", "")),
               ("description", description), ("category", CATEGORY), ("license", LICENSE)]
+    if info.get("homepage"):
+        fields.append(("source_url", info["homepage"]))
     fields += [("tags", t) for t in TAGS]
     check_ok(request(f"{PORTAL}/api/v2/mods/edit_details", fields, api_key=api_key),
              "edit_details")

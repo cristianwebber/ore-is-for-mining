@@ -4,7 +4,8 @@
   "title": "Ore is for Mining",
   "author": "SweetIDreams",
   "factorio_version": "2.1",
-  "description": "Ore is for mining. Only drills, belts, inserters, beacons, poles and pipes can be built on resource patches. Everything else, find your own land.",
+  "homepage": "https://github.com/cristianwebber/ore-is-for-mining",
+  "description": "Ore is for mining. Only drills, belts, inserters, chests, beacons, poles and pipes can be built on resource patches. Everything else, find your own land.",
   "dependencies": [
     "base >= 2.1.0",
     "? space-age"

@@ -7,11 +7,12 @@ This mod ends that. On ore and oil, you can only build what a mining outpost act
 - **Mining drills** (including pumpjacks)
 - **Belts, underground belts, splitters and loaders**
 - **Inserters**
+- **Chests** (wooden, iron, steel and logistic chests)
 - **Beacons**
 - **Electric poles**
 - **Pipes and pipes-to-ground**
 
-Everything else (assemblers, furnaces, chests, turrets, walls, solar panels and so on)? Find your own land.
+Everything else (assemblers, furnaces, turrets, walls, solar panels and so on)? Find your own land.
 
 > **Note:** this mod's code was generated with AI (Claude) and tested by a human in-game.
 
@@ -20,18 +21,18 @@ Everything else (assemblers, furnaces, chests, turrets, walls, solar panels and 
 The restriction uses the game's own collision system. Placing a blocked building on ore works like placing it on water: the build preview turns red and it can't be placed. That applies to ghosts, blueprints and construction robots too, so nothing slips through.
 
 - Works on **ore and fluid patches**: crude oil, plus Space Age's tungsten, calcite, scrap, lithium brine, fluorine vents and sulfuric acid geysers.
-- **Mod friendly:** the rules go by building type, so drills, belts, loaders, inserters, beacons, poles and pipes from other mods are allowed automatically, and their other buildings and resources are restricted automatically.
-- **Vehicles, trains and elevated rails are never restricted.** You can still drive across and bridge over your patches.
+- **Mod friendly:** the rules go by building type, so drills, belts, loaders, inserters, chests, beacons, poles and pipes from other mods are allowed automatically, and their other buildings and resources are restricted automatically.
+- **Vehicles, trains and elevated rails are never restricted.** You can still drive across your patches and run elevated rails over them. Rail supports and ramps count as rails, though, so a patch too wide to span needs the "Allow rails" setting.
 - Buildings already standing on ore in an existing save are left alone.
 
 ## Settings (startup)
 
 | Setting | Default | Description |
 |---|---|---|
-| Allow rails on resource patches | Off | Rails, rail ramps, rail supports, signals and train stops |
+| Allow rails on resource patches | Off | Rails, rail ramps, rail supports, signals and train stops. Turn this on to put elevated rail supports on wide patches. |
 | Allow splitters on resource patches | On | Splitters and lane splitters |
 | Also apply to oil and other fluid resources | On | On: crude oil spots (and Space Age's lithium brine, fluorine vents and sulfuric acid geysers) follow the same rules as ore. Off: only solid ores are restricted. |
-| Extra allowed entities | (empty) | Comma-separated entity names, e.g. `small-lamp, radar, wooden-chest` |
+| Extra allowed entities | (empty) | Comma-separated entity names, e.g. `small-lamp, radar, lab` |
 
 ## Compatibility
 
@@ -50,3 +51,9 @@ if ore_is_for_mining then
   ore_is_for_mining.ignored_resources["my-ore"] = true     -- leave a resource unrestricted
 end
 ```
+
+## License
+
+The code is under the MIT license. The thumbnail is made from Factorio's own graphics, which belong to Wube Software.
+
+Source: https://github.com/cristianwebber/ore-is-for-mining
