@@ -224,6 +224,43 @@ def blurred_alpha(img, blur, strength, color=(0.0, 0.0, 0.0)):
     return Image(w, h, out)
 
 
+def blur(img, r):
+    """Two box blurs of radius r over all channels (edges clamp)."""
+    w, h = img.w, img.h
+    px = img.px
+    for _ in range(2):
+        tmp = [None] * (w * h)
+        for y in range(h):
+            for x in range(w):
+                acc = [0.0, 0.0, 0.0, 0.0]
+                for i in range(x - r, x + r + 1):
+                    p = px[y * w + min(w - 1, max(0, i))]
+                    for c in range(4):
+                        acc[c] += p[c]
+                tmp[y * w + x] = [c / (2 * r + 1) for c in acc]
+        out = [None] * (w * h)
+        for y in range(h):
+            for x in range(w):
+                acc = [0.0, 0.0, 0.0, 0.0]
+                for j in range(y - r, y + r + 1):
+                    p = tmp[min(h - 1, max(0, j)) * w + x]
+                    for c in range(4):
+                        acc[c] += p[c]
+                out[y * w + x] = [c / (2 * r + 1) for c in acc]
+        px = out
+    return Image(w, h, px)
+
+
+def sharpen(img, amount):
+    """Unsharp mask; brings back the detail lost when shrinking icons."""
+    soft = blur(img, 1)
+    for p, q in zip(img.px, soft.px):
+        a = p[3]
+        for c in range(3):
+            p[c] = max(0.0, min(a, p[c] + amount * (p[c] - q[c])))
+    return img
+
+
 def darken(img, amount):
     for p in img.px:
         for i in range(3):
@@ -319,9 +356,10 @@ def gfx(rel):
     return DATA / "base" / "graphics" / rel
 
 
-def icon(name, size):
+def icon(name, size, sharp=0.0):
     """The full-resolution 64x64 level of a mipmapped item icon, scaled to size."""
-    return resize(read_png(gfx(f"icons/{name}.png"), (0, 0, 64, 64)), size, size)
+    img = resize(read_png(gfx(f"icons/{name}.png"), (0, 0, 64, 64)), size, size)
+    return sharpen(img, sharp) if sharp else img
 
 
 def place_icon(canvas, img, x, y, blur=3, strength=1.6):
@@ -483,22 +521,31 @@ def design_icons():
 
 
 def design_split():
-    """Allowed (green check) against not allowed (red cross), side by side."""
+    """Allowed (green check) against not allowed (red cross), in two panels."""
     canvas = Image(SIZE, SIZE)
-    ore_ground(canvas, 24, dim=0.45)
-    # Darker, redder lower half so the two groups read as separate panels.
+    ore_ground(canvas, 24, dim=0.5)
+    half = SIZE // 2
     for y in range(SIZE):
+        top = y < half
         for x in range(SIZE):
-            if y > 76:
-                p = canvas.px[y * SIZE + x]
-                p[0], p[1], p[2] = p[0] * 0.75 + 0.07, p[1] * 0.55, p[2] * 0.55
-    draw_shape(canvas, lambda x, y: 75 <= y <= 77, (0, 74, SIZE, 78), (0.08, 0.08, 0.08))
-    for i, name in enumerate(["electric-mining-drill", "transport-belt", "inserter"]):
-        place_icon(canvas, icon(name, 38), 8 + i * 42, 22, blur=2)
-    badge(canvas, 128, 14, 10, (0.2, 0.62, 0.2), "check")
-    for i, name in enumerate(["assembling-machine-1", "stone-furnace", "wooden-chest"]):
-        place_icon(canvas, icon(name, 38), 8 + i * 42, 92, blur=2)
-    badge(canvas, 128, 130, 10, (0.8, 0.15, 0.15), "cross")
+            p = canvas.px[y * SIZE + x]
+            if top:
+                p[0], p[1], p[2] = p[0] * 0.8, p[1] * 0.9 + 0.035, p[2] * 0.8
+            else:
+                p[0], p[1], p[2] = p[0] * 0.9 + 0.06, p[1] * 0.6, p[2] * 0.6
+    draw_shape(canvas, lambda x, y: half - 1 <= y <= half + 1, (0, half - 2, SIZE, half + 2),
+               (0.06, 0.06, 0.06))
+    size, gap = 44, 3
+    left = (SIZE - 3 * size - 2 * gap) // 2
+    rows = [
+        (["electric-mining-drill", "transport-belt", "inserter"], 16, (0.22, 0.66, 0.22), "check"),
+        (["assembling-machine-1", "stone-furnace", "wooden-chest"], half + 16, (0.84, 0.16, 0.16), "cross"),
+    ]
+    for names, top, color, mark in rows:
+        for i, name in enumerate(names):
+            place_icon(canvas, icon(name, size, sharp=0.6), left + i * (size + gap), top,
+                       blur=2, strength=1.8)
+        badge(canvas, SIZE - 12, top - 5, 9, color, mark)
     return canvas
 
 
@@ -537,7 +584,7 @@ DESIGNS = {
     "furnace": design_furnace,
     "drill": design_drill,
 }
-DEFAULT = "icons"
+DEFAULT = "split"
 
 
 def main():
