@@ -30,7 +30,7 @@ TAGS = ["mining"]
 LICENSE = "default_mit"
 
 # Everything that goes into the zip; tests/, tools/, dist/ and docs stay out.
-INCLUDE = ["info.json", "changelog.txt", "thumbnail.png", "settings.lua", "data.lua",
+INCLUDE = ["info.json", "changelog.txt", "thumbnail.png", "LICENSE", "settings.lua", "data.lua",
            "data-final-fixes.lua", "locale"]
 
 
@@ -108,7 +108,7 @@ def request(url, fields=None, files=None, api_key=None, method="POST"):
         body += path.read_bytes() + b"\r\n"
     body += f"--{boundary}--\r\n".encode()
     headers = {"Content-Type": f"multipart/form-data; boundary={boundary}",
-               "User-Agent": "ore-patch-restrictions-release"}
+               "User-Agent": "ore-is-for-mining-release"}
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
     req = urllib.request.Request(url, data=body if method == "POST" else None,
