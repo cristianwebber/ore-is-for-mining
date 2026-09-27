@@ -5,7 +5,7 @@ local LAYER = "opr_resource"
 local startup = settings.startup
 
 -- Entity types that may always be built on resource patches. Matching by type
--- means modded drills, belts, loaders, inserters, beacons, poles and pipes are allowed
+-- means modded drills, belts, loaders, inserters, chests, beacons, poles and pipes are allowed
 -- automatically.
 local allowed_types = {
   ["mining-drill"] = true, -- includes pumpjacks
@@ -15,6 +15,8 @@ local allowed_types = {
   ["loader"] = true,
   ["loader-1x1"] = true,
   ["inserter"] = true,
+  ["container"] = true, -- wooden, iron and steel chests
+  ["logistic-container"] = true, -- logistic chests
   ["beacon"] = true,
   ["electric-pole"] = true,
   ["pipe"] = true,

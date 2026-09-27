@@ -17,11 +17,13 @@ local base_allowed = {
   "underground-belt", "express-underground-belt",
   "loader", "fast-loader", "express-loader", "beacon",
   "burner-inserter", "inserter", "long-handed-inserter", "fast-inserter", "bulk-inserter",
+  "wooden-chest", "iron-chest", "steel-chest", "passive-provider-chest", "active-provider-chest",
+  "storage-chest", "buffer-chest", "requester-chest",
   "small-electric-pole", "medium-electric-pole", "big-electric-pole", "substation",
   "pipe", "pipe-to-ground",
 }
 local base_blocked = {
-  "assembling-machine-1", "stone-furnace", "wooden-chest", "gun-turret",
+  "assembling-machine-1", "stone-furnace", "gun-turret",
   "stone-wall", "gate", "solar-panel", "accumulator", "lab", "radar", "roboport",
   "storage-tank", "pump", "offshore-pump", "boiler", "steam-engine", "small-lamp",
   "constant-combinator", "land-mine",
@@ -96,7 +98,7 @@ scenarios["extra-allowed-setting"] = {
   space_age = false,
   settings = { ["opr-extra-allowed-entities"] = " radar,stone-furnace ,  small-lamp" },
   allowed = { "radar", "stone-furnace", "small-lamp" },
-  blocked = { "steel-furnace", "wooden-chest", "assembling-machine-1" },
+  blocked = { "steel-furnace", "lab", "assembling-machine-1" },
   restricted_resources = { "iron-ore" },
 }
 

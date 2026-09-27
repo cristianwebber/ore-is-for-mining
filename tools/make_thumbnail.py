@@ -539,7 +539,7 @@ def design_split():
     left = (SIZE - 3 * size - 2 * gap) // 2
     rows = [
         (["electric-mining-drill", "transport-belt", "inserter"], 16, (0.22, 0.66, 0.22), "check"),
-        (["assembling-machine-1", "stone-furnace", "wooden-chest"], half + 16, (0.84, 0.16, 0.16), "cross"),
+        (["assembling-machine-1", "stone-furnace", "solar-panel"], half + 16, (0.84, 0.16, 0.16), "cross"),
     ]
     for names, top, color, mark in rows:
         for i, name in enumerate(names):
